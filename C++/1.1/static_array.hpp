@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <algorithm>
 #include <boost/smart_ptr/make_shared_array.hpp>
 #include <boost/smart_ptr/allocate_shared_array.hpp> 
 
@@ -78,7 +79,7 @@ namespace starr
         friend void quicksort(static_array<A, size2>& array);
 
         template<typename A, const size_t size2>
-        friend void binary_search(const static_array<A, size2>& array);
+        friend bool binary_search(const static_array<A, size2>& array, A value_to_search);
     };
 
 
@@ -91,9 +92,12 @@ namespace starr
     }
     template<typename array_type, const size_t size>
     void quicksort(static_array<array_type, size>& array) {
-        
+        std::sort(&array.array[0], &array.array[array.length]);
     }
-    
+    template<typename array_type, const size_t size>
+    bool binary_search(const static_array<array_type, size>& array, array_type value_to_search) {
+        return std::binary_search(&array.array[0], &array.array[array.length], value_to_search);
+    }
 
 
 } // namespace starr
