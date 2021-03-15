@@ -72,7 +72,7 @@ namespace starr
         }
 
         template<typename A, const size_t size2>
-        friend std::ostream& operator<<(std::ostream& out, const static_array<A, size2> arr);
+        friend std::ostream& operator<<(std::ostream& out, const static_array<A, size2>& arr);
 
         template<typename A, const size_t size2>
         friend void quicksort(static_array<A, size2>& array);
@@ -83,7 +83,7 @@ namespace starr
 
 
     template<typename array_type, const size_t size>
-    std::ostream& operator<<(std::ostream& out, const static_array<array_type, size> arr) {
+    std::ostream& operator<<(std::ostream& out, const static_array<array_type, size>& arr) {
         for(size_t i = 0; i < arr.getLength(); i++) {
             out << arr.array[i] << std::endl;
         }
